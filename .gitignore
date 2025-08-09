@@ -1,0 +1,6 @@
+/js/node_modules
+/js/package*
+
+/src/__pycache__
+/src/test.py
+/rawdata/jsons.txt
