@@ -17,6 +17,21 @@ parser.on('warning', (pgn, warning) => {;
 function YDGWtoactisense(line) {
     //ydgw->json->n2k
     const json = parser.parseString(line);
+
+    //fills spaces in AIS Position reports to avoid unwanted additional characters
+    if (json.pgn == 129794 || json.pgn == 129809 || json.pgn == 129810){
+        //console.log("Position Report")
+        const keys = ["name", "callsign", "destination"];
+        const targetLength = [20,7,20];
+
+        keys.forEach(key => {
+          if (json.fields[key] !== undefined) {
+            json.fields[key] = String(json.fields[key]).padEnd(targetLength[keys.indexOf(key)], " ");
+          }
+        });
+    }
+    
+    //console.log(json)
     const acti = pgnToActisenseN2KAsciiFormat(json)
     return acti;
 }

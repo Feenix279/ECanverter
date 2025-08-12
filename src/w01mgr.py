@@ -20,9 +20,12 @@ def open_socket():
 def close():
     sock.close()
 
-def send_udp(message:str):
+def send_str(message:str):
     sock.sendto(message.encode(),(ECAN_IP,ECAN_PORT))
 
+def send_bytes(message:bytes):
+    sock.sendto(message,(ECAN_IP, ECAN_PORT))
+    
 def return_data(data):
     print(data)
 
@@ -32,7 +35,7 @@ def timeout_thread():
         try:
             while not dms:
                 print("Timeouted")
-                send_udp("13")
+                send_str("13")
                 time.sleep(5)
             dms = False
             time.sleep(10)

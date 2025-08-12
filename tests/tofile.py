@@ -2,6 +2,7 @@ import src.w01mgr as w01mgr
 import src.jsmgr as jsmgr
 import src.funcs as funcs
 import threading
+import time
 
 from queue import Queue
 import json
@@ -34,8 +35,9 @@ w01mgr.return_data = catch_data
 threading.Thread(target=w01mgr.read_udp, daemon=True).start()
 while True:
     try:
-        usrin = input("Senden? : ")
-        w01mgr.send_udp(usrin+"\n")
+        time.sleep(5)
+        #usrin = input("Senden? : ")
+        #w01mgr.send_bytes(bytes.fromhex(usrin+"\n"))
     except KeyboardInterrupt:
         break
 print("Ended Program")
