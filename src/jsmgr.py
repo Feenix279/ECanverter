@@ -2,14 +2,13 @@ import subprocess
 from queue import Queue
 import threading
 
-DECODED_QUEUE:Queue = None
+
 
 def init(filename:str)->None:
     global proc
     global DECODED_QUEUE
     
-    if not DECODED_QUEUE:
-        DECODED_QUEUE = Queue()
+    DECODED_QUEUE = Queue()
 
     # Starting Node-JS as Subprocess
     proc = subprocess.Popen(

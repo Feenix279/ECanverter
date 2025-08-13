@@ -1,4 +1,4 @@
-Ecanverter can be used to load [CAN BUS](https://en.wikipedia.org/wiki/CAN_bus) data from the [ECAN-W01](https://www.cdebyte.com/products/ECAN-W01) into [OpenCPN](https://opencpn.org/).
+Ecanverter can be used to load [CAN BUS](https://en.wikipedia.org/wiki/CAN_bus) data from the [ECAN-W01](https://www.cdebyte.com/products/ECAN-W01) into [OpenCPN](https://opencpn.org/). 
 
 # Manual
 + [Usage](##usage)
@@ -8,8 +8,9 @@ Ecanverter can be used to load [CAN BUS](https://en.wikipedia.org/wiki/CAN_bus) 
 1. Near instant translation from ECAN-W01 to OpenCPN
 2. Broadcasts the NMEA2000 data to the whole network via UDP
 3. Can be used for a JSON-dump of the whole traffic (or filtered) into a textfile
-4. Currently working on the ability to controll Autopilots via any OpenCPN-pilot-plugin.
-5. Includes some test-python-files that may be used for different things
+4. Includes a seperate script which allows to fully controll SeaTalk1 Autopilots
+5. Currently working on the ability to controll Autopilots via any OpenCPN-pilot-plugin.
+6. Includes some test-python-files that may be used for different tasks
 
 ## Setup
 
@@ -29,7 +30,7 @@ npm install @canboat/canboatjs
 + Set an incoming UDP connection to another port (I use 8888) with the NMEA2000 Protocoll
 
 ### Start
-You can use the .exe file *_main.py*
+You can use the .exe file *_main.py* (exe not yet publicly available, create a ticket if you want one)
 <sub>For building an exe from *_main.py* yourself, only the js and src folders as well as config.ini are required</sub>
 
 + Start the exe or *_main.py* and you should see the datastream in the terminal after a few seconds.
@@ -37,4 +38,4 @@ You can use the .exe file *_main.py*
 
 ## Additional Information
 + The project uses the [Canboatjs](https://github.com/canboat/canboatjs) package to transform the received data into the *Actisense N2K*-format required by OpenCPN.
-+ This has also been tested with the SeaTalk to SeaTalk<sup>ng</sup> converter added to the CAN-Bus. It worked without any further errors and OpenCPN was able to read both the original CAN-Bus and added SeaTalk data.
++ This has also been tested with the SeaTalk to SeaTalk<sup>ng</sup> converter added to the CAN-Bus. It worked without any further errors and OpenCPN was able to read both the original CAN-Bus and added SeaTalk data. The connection also allowed to controll an Autopilot on SeaTalk1.

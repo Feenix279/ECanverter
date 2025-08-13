@@ -2,6 +2,7 @@
 #opens udp server and may be used to broadcast
 import socket
 
+#change in config.ini
 HOST = ""
 PORT = 8888
 
