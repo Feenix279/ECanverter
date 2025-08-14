@@ -6,6 +6,7 @@ ECAN_IP = '192.168.4.101'
 ECAN_PORT = 8881
 
 def open_socket():
+    """Basic socket setup"""
     global sock
     
     # Lokale address
@@ -21,7 +22,10 @@ def close():
     sock.close()
 
 def send_str(message:str):
-    sock.sendto(message.encode(),(ECAN_IP,ECAN_PORT))
+    try:
+        sock.sendto(message.encode(),(ECAN_IP,ECAN_PORT))
+    except:
+        pass
 
 def send_bytes(message:bytes):
     sock.sendto(message,(ECAN_IP, ECAN_PORT))

@@ -14,7 +14,8 @@ def split_raw(raw_data:bytes)->list:
             chunks.append(spchunk)
         return chunks
 
-def chunkton2k(chunks:list, decoded_queue:queue.Queue, sendtojs=None)->list:
+def chunkton2k(chunks:list[list[bytes]], decoded_queue:queue.Queue, sendtojs=None)->list[str]:
+    """Takes list with chopped up byte packages and returns list with strings of n2k format"""
     reslist = []
     #for each data string
     for chunk in chunks:

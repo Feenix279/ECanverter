@@ -2,12 +2,12 @@ import src.w01mgr as w01mgr
 import time
 import json
 
-
 file = open("./database/pilotcommands.json","r")
 commands = json.loads(file.read())
 file.close()
 
 def init():
+    """initializes only w01. If changed to a different one, this can be skipped"""
     w01mgr.open_socket()
     time.sleep(1)
     w01mgr.send_bytes(b"hello")
@@ -33,12 +33,18 @@ def minusone():
 def minusten():
     send_command(commands["minus10"])
     print("-10")
+def minushundred():
+    send_command(commands["minus100"])
+    print("-100")
 def plusone():
     send_command(commands["plus1"])
     print("+1")
 def plusten():
     send_command(commands["plus10"])
     print("+10")
+def plushundred():
+    send_command(commands["plus100"])
+    print("+100")
 
 if __name__ == "__main__":
     funcs = {

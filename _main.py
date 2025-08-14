@@ -1,11 +1,13 @@
-from queue import Queue
 import configparser
+import threading
 
 import src.jsmgr as jsmgr
 import src.funcs as funcs
 
 import src.w01mgr as w01mgr
 import src.broadcast as opencpn
+
+import src.remotemgr as remotemgr
 
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -32,6 +34,15 @@ def catch_data(data):
 
 w01mgr.ECAN_IP = config.get("UDPW01", "IP")
 w01mgr.ECAN_PORT = int(config.get("UDPW01", "Port"))
+
+remotemgr.w01mgr = w01mgr
+remotemgr.PORT = int(config.get("REMOTETCP","Port"))
+remotemgr.HOST = config.get("REMOTETCP", "Host")
+threading.Thread(target=remotemgr.main, daemon=True).start()
+if config.get("Startup","pilotcontrolui") == "True":
+    import src.pilotcontrolui as pcui
+    pcui.pc = remotemgr.pc
+    threading.Thread(target=pcui.start_window, daemon=True).start()
 
 w01mgr.open_socket()
 w01mgr.return_data = catch_data
